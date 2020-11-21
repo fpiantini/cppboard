@@ -7,6 +7,13 @@ namespace bitboard
 
     // ---------------------------------------------------------------------
     // Public methods
+    BitBoardState BitBoard::generateStateFromPos(const std::set<std::string> &poslist)
+    {
+        BitBoard bb;
+        bb.setPos(poslist);
+        return bb.state();
+    }
+
     void BitBoard::setPos(const std::string &pos)
     {
         if (isValidPos(pos))
@@ -33,7 +40,7 @@ namespace bitboard
     }
     void BitBoard::move(const std::string &from, const std::string &to)
     {
-        if (cellActive(from)) {
+        if (cellActive(from) && !cellActive(to)) {
             clearPos(from);
             setPos(to);
         }

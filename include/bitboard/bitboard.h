@@ -69,6 +69,7 @@ namespace bitboard
 
     void reset() { bbs = ClearBoard; }
     static BitBoardState generateStateFromPos(const std::string &pos) { return BitBoard(pos).state(); };
+    static BitBoardState generateStateFromPos(const std::set<std::string> &poslist);
     void setPos(const std::string &pos);
     void setPos(const std::set<std::string>& poslist);
     void clearPos(const std::string &pos);
