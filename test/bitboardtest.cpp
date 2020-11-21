@@ -34,6 +34,13 @@ TEST_F(BBTester, B1_Busy)
     ASSERT_EQ(bboard.state(), 2);
 }
 
+TEST_F(BBTester, CheckUppercase)
+{
+    bboard.reset();
+    bboard.setPos("A1");
+    ASSERT_EQ(bboard.state(), 1);
+}
+
 TEST_F(BBTester, DiagonalBottomLeftToUpperRightBusy)
 {
     bboard.reset();

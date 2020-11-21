@@ -43,7 +43,7 @@ namespace bitboard
     unsigned int BitBoard::posToBitPos(const std::string &pos)
     {
         unsigned int row = pos.at(1) - '1';
-        unsigned int col = pos.at(0) - 'a';
+        unsigned int col = tolower(pos.at(0)) - 'a';
         return row * 8 + col;
     }
 
