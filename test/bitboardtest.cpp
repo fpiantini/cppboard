@@ -179,3 +179,11 @@ TEST_F(BBTester, MoveAPieceFromH2ToB8)
     bboard.move("h2", "b8");
     ASSERT_EQ(bboard.state(), bboard.generateStateFromPos("b8"));
 }
+
+TEST_F(BBTester, DontMoveANotExistingPiece)
+{
+    bboard.reset();
+    bboard.setPos("h2");
+    bboard.move("h3", "c8");
+    ASSERT_EQ(bboard.state(), bboard.generateStateFromPos("h2"));
+}
