@@ -77,7 +77,8 @@ namespace bitboard
     BitBoardState state() const {return bbs;}
 
   private:
-    unsigned int posToBitPos(const std::string &pos) const;
+    static BitBoardState pos2mask(const std::string &pos) { return 1ULL << posToBitPos(pos); }
+    static unsigned int posToBitPos(const std::string &pos);
     static BitBoardState staticState(const std::string &pos) { return BitBoard(pos).state(); };
 
     // ------------------------------------

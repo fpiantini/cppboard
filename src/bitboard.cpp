@@ -9,7 +9,7 @@ namespace bitboard
     // Public methods
     void BitBoard::setPos(const std::string &pos)
     {
-        bbs |= 1ULL << posToBitPos(pos);
+        bbs |= pos2mask(pos);
     }
 
     void BitBoard::setPos(const std::list<std::string>& poslist)
@@ -21,7 +21,7 @@ namespace bitboard
 
     bool BitBoard::cellIsActive(std::string &pos)
     {
-        return ((bbs & (1ULL << posToBitPos(pos))) != 0);
+        return ((bbs & pos2mask(pos)) != 0);
     }
 
     void BitBoard::activeCells(std::list<std::string> &actCells)
@@ -40,7 +40,7 @@ namespace bitboard
 
     // ---------------------------------------------------------------------
     // Private methods
-    unsigned int BitBoard::posToBitPos(const std::string &pos) const
+    unsigned int BitBoard::posToBitPos(const std::string &pos)
     {
         unsigned int row = pos.at(1) - '1';
         unsigned int col = pos.at(0) - 'a';
