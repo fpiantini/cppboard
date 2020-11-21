@@ -69,7 +69,7 @@ namespace bitboard
     void reset() { bbs = 0; }
     void setPos(const std::string &pos);
     void setPos(const std::list<std::string>& poslist);
-    bool isBusy(const std::string &pos) const { return (bbs & staticState(pos) != 0); }
+    bool isBusy(const std::string &pos) const { return ((bbs & staticState(pos)) != 0); }
 
     bool cellIsActive(std::string &pos);
     void activeCells(std::list<std::string> &actCells);
