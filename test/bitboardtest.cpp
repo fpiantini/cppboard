@@ -151,3 +151,23 @@ TEST_F(BBTester, BoardDoNotChangeIfInvalidCoordinates)
     bboard.setPos("Cf3");
     ASSERT_EQ(bboard.state(), ClearBoard);
 }
+
+TEST_F(BBTester, IfACellIsFirstSetAndThenClearedBoardIsClear)
+{
+    bboard.reset();
+    bboard.setPos("d3");
+    bboard.clearPos("d3");
+    ASSERT_EQ(bboard.state(), ClearBoard);
+
+}
+
+TEST_F(BBTester, IfASetOfCellsIsFirstSetAndThenClearedBoardIsClear)
+{
+    bboard.reset();
+    bboard.setPos(set<string>{
+        "b3", "c4", "f5", "g6"});
+    bboard.clearPos(set<string>{
+        "b3", "c4", "f5", "g6"});
+    ASSERT_EQ(bboard.state(), ClearBoard);
+
+}

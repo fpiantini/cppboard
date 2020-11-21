@@ -9,7 +9,6 @@ namespace bitboard
     // Public methods
     void BitBoard::setPos(const std::string &pos)
     {
-        // ignores invalid positions...
         if (isValidPos(pos))
             bbs |= pos2mask(pos);
     }
@@ -18,6 +17,18 @@ namespace bitboard
     {
         for (auto pos: poslist) {
             setPos(pos);
+        }
+    }
+
+    void BitBoard::clearPos(const std::string &pos)
+    {
+        if (isValidPos(pos))
+            bbs &= ~pos2mask(pos);
+    }
+    void BitBoard::clearPos(const std::set<std::string>& poslist)
+    {
+        for (auto pos: poslist) {
+            clearPos(pos);
         }
     }
 
