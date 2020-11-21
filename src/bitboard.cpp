@@ -1,4 +1,3 @@
-#include <iostream>
 #include "bitboard/bitboard.h"
 
 namespace bitboard
@@ -6,7 +5,6 @@ namespace bitboard
 
     void BitBoard::setpos(const std::string &pos)
     {
-        std::cout << "*** setpos() called with position = " << pos << " ***" << std::endl;
         bbs |= 1ULL << posToBitpos(pos);
     }
 

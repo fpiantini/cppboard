@@ -7,9 +7,6 @@
 using namespace bitboard;
 using namespace testing;
 
-const uint64_t BottomLeftUpperRightDiagonal = 0x8040201008040201;
-const uint64_t BottomRightUpperLeftDiagonal = 0x0102040810204080;
-
 class BBTester : public Test
 {
 public:
@@ -51,3 +48,18 @@ TEST_F(BBTester, DiagonalBottomRightToUpperLeftBusy)
     ASSERT_EQ(bboard.bbs, BottomRightUpperLeftDiagonal);
 }
 
+TEST_F(BBTester, BoardCenterBusy)
+{
+    bboard.reset();
+    bboard.setpos(std::list<std::string>
+        {"d4", "e4", "d5", "e5"});
+    ASSERT_EQ(bboard.bbs, BoardCenter);
+}
+
+TEST_F(BBTester, CornersBusy)
+{
+    bboard.reset();
+    bboard.setpos(std::list<std::string>
+        {"a1", "h1", "a8", "h8"});
+    ASSERT_EQ(bboard.bbs, Corners);
+}

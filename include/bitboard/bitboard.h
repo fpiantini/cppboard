@@ -6,10 +6,18 @@
 #include <list>
 
 // base type for bitboard representation
-typedef uint64_t BitBoardState;
 
 namespace bitboard
 {
+
+  typedef uint64_t BitBoardState;
+
+  // Typical bitboards configutations
+  const BitBoardState BottomLeftUpperRightDiagonal = 0x8040201008040201;
+  const BitBoardState BottomRightUpperLeftDiagonal = 0x0102040810204080;
+  const BitBoardState BoardCenter                  = 0x0000001818000000;
+  const BitBoardState Corners                      = 0x8100000000000081;
+
 
   class BitBoard
   {
