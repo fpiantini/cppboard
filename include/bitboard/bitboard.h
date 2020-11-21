@@ -68,11 +68,14 @@ namespace bitboard
     BitBoard(const std::set<std::string>& pos) : BitBoard() { setPos(pos); }
 
     void reset() { bbs = ClearBoard; }
+    static BitBoardState generateStateFromPos(const std::string &pos) { return BitBoard(pos).state(); };
     void setPos(const std::string &pos);
     void setPos(const std::set<std::string>& poslist);
     void clearPos(const std::string &pos);
     void clearPos(const std::set<std::string>& poslist);
-    bool isBusy(const std::string &pos) const { return ((bbs & staticState(pos)) != 0); }
+    void move(const std::string &from, const std::string &to);
+
+    bool isBusy(const std::string &pos) const { return ((bbs & generateStateFromPos(pos)) != 0); }
 
     bool cellIsActive(std::string &pos);
     void activeCells(std::set<std::string> &actCells);
@@ -85,7 +88,6 @@ namespace bitboard
     static bool isValidColumn(char col);
     static BitBoardState pos2mask(const std::string &pos);
     static unsigned int posToBitPos(const std::string &pos);
-    static BitBoardState staticState(const std::string &pos) { return BitBoard(pos).state(); };
 
     // ------------------------------------
     BitBoardState bbs;

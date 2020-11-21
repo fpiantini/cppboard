@@ -31,6 +31,11 @@ namespace bitboard
             clearPos(pos);
         }
     }
+    void BitBoard::move(const std::string &from, const std::string &to)
+    {
+        clearPos(from);
+        setPos(to);
+    }
 
     bool BitBoard::cellIsActive(std::string &pos)
     {
