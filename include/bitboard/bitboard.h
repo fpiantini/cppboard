@@ -75,9 +75,8 @@ namespace bitboard
     void clearPos(const std::set<std::string>& poslist);
     void move(const std::string &from, const std::string &to);
 
-    bool isBusy(const std::string &pos) const { return ((bbs & generateStateFromPos(pos)) != 0); }
+    bool cellActive(const std::string &pos) const { return ((bbs & generateStateFromPos(pos)) != 0); }
 
-    bool cellIsActive(std::string &pos);
     void activeCells(std::set<std::string> &actCells);
 
     BitBoardState state() const {return bbs;}

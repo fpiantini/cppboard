@@ -37,11 +37,6 @@ namespace bitboard
         setPos(to);
     }
 
-    bool BitBoard::cellIsActive(std::string &pos)
-    {
-        return ((bbs & pos2mask(pos)) != 0);
-    }
-
     void BitBoard::activeCells(std::set<std::string> &actCells)
     {
         std::string pos;
@@ -49,7 +44,7 @@ namespace bitboard
             for(char col = 'a'; col <= 'h'; col++) {
                 pos = col;
                 pos += row;
-                if (cellIsActive(pos)) {
+                if (cellActive(pos)) {
                     actCells.insert(pos);
                 }
             }
