@@ -12,7 +12,7 @@ namespace bitboard
         bbs |= pos2mask(pos);
     }
 
-    void BitBoard::setPos(const std::list<std::string>& poslist)
+    void BitBoard::setPos(const std::set<std::string>& poslist)
     {
         for (auto pos: poslist) {
             setPos(pos);
@@ -24,7 +24,7 @@ namespace bitboard
         return ((bbs & pos2mask(pos)) != 0);
     }
 
-    void BitBoard::activeCells(std::list<std::string> &actCells)
+    void BitBoard::activeCells(std::set<std::string> &actCells)
     {
         std::string pos;
         for (char row = '1'; row <= '8'; row++) {
@@ -32,7 +32,7 @@ namespace bitboard
                 pos = col;
                 pos += row;
                 if (cellIsActive(pos)) {
-                    actCells.push_back(pos);
+                    actCells.insert(pos);
                 }
             }
         }

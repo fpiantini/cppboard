@@ -1,5 +1,5 @@
 #include <iostream>
-#include <list>
+#include <set>
 
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
@@ -37,7 +37,7 @@ TEST_F(BBTester, B1_Busy)
 TEST_F(BBTester, DiagonalBottomLeftToUpperRightBusy)
 {
     bboard.reset();
-    bboard.setPos(list<string>
+    bboard.setPos(set<string>
         {"a1", "b2", "c3", "d4", "e5", "f6", "g7", "h8"});
     ASSERT_EQ(bboard.state(), BottomLeftUpperRightDiagonal);
 }
@@ -45,7 +45,7 @@ TEST_F(BBTester, DiagonalBottomLeftToUpperRightBusy)
 TEST_F(BBTester, DiagonalBottomRightToUpperLeftBusy)
 {
     bboard.reset();
-    bboard.setPos(list<string>
+    bboard.setPos(set<string>
         {"a8", "b7", "c6", "d5", "e4", "f3", "g2", "h1"});
     ASSERT_EQ(bboard.state(), BottomRightUpperLeftDiagonal);
 }
@@ -53,7 +53,7 @@ TEST_F(BBTester, DiagonalBottomRightToUpperLeftBusy)
 TEST_F(BBTester, BoardCenterBusy)
 {
     bboard.reset();
-    bboard.setPos(list<string>
+    bboard.setPos(set<string>
         {"d4", "e4", "d5", "e5"});
     ASSERT_EQ(bboard.state(), BoardCenter);
 }
@@ -61,28 +61,28 @@ TEST_F(BBTester, BoardCenterBusy)
 TEST_F(BBTester, CornersBusy)
 {
     bboard.reset();
-    bboard.setPos(list<string>
+    bboard.setPos(set<string>
         {"a1", "h1", "a8", "h8"});
     ASSERT_EQ(bboard.state(), Corners);
 }
 
 TEST(BitBoardTester, UsingConstructorBothKingsInitial)
 {
-    BitBoard bb(list<string>{"e1", "e8"});
+    BitBoard bb(set<string>{"e1", "e8"});
     ASSERT_EQ(bb.state(), CH_BothKingsInitial);
 
 }
 
 TEST(BitBoardTester, UsingConstructorBothQueensInitial)
 {
-    BitBoard bb(list<string>{"d1", "d8"});
+    BitBoard bb(set<string>{"d1", "d8"});
     ASSERT_EQ(bb.state(), CH_BothQueensInitial);
 
 }
 
 TEST(BitBoardTester, UsingConstructorFullBoardInitial)
 {
-    BitBoard bb(list<string>{
+    BitBoard bb(set<string>{
         "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1",
         "a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2",
         "a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7",
@@ -94,32 +94,32 @@ TEST(BitBoardTester, UsingConstructorFullBoardInitial)
 TEST(BitBoardTester, UsingValueContructorCheckerInitial)
 {
     BitBoard bb(CHK_Initial);
-    list<string>actCells;
+    set<string>actCells;
     bb.activeCells(actCells);
 
     ASSERT_EQ(actCells.size(), 24);
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "a1") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "c1") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "e1") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "g1") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "b2") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "d2") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "f2") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "h2") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "a3") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "c3") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "e3") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "g3") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "b6") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "d6") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "f6") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "h6") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "a7") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "c7") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "e7") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "g7") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "b8") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "d8") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "f8") != actCells.end());
-    ASSERT_TRUE(std::find(actCells.begin(), actCells.end(), "h8") != actCells.end());
+    ASSERT_TRUE(actCells.find("a1") != actCells.end());
+    ASSERT_TRUE(actCells.find("c1") != actCells.end());
+    ASSERT_TRUE(actCells.find("e1") != actCells.end());
+    ASSERT_TRUE(actCells.find("g1") != actCells.end());
+    ASSERT_TRUE(actCells.find("b2") != actCells.end());
+    ASSERT_TRUE(actCells.find("d2") != actCells.end());
+    ASSERT_TRUE(actCells.find("f2") != actCells.end());
+    ASSERT_TRUE(actCells.find("h2") != actCells.end());
+    ASSERT_TRUE(actCells.find("a3") != actCells.end());
+    ASSERT_TRUE(actCells.find("c3") != actCells.end());
+    ASSERT_TRUE(actCells.find("e3") != actCells.end());
+    ASSERT_TRUE(actCells.find("g3") != actCells.end());
+    ASSERT_TRUE(actCells.find("b6") != actCells.end());
+    ASSERT_TRUE(actCells.find("d6") != actCells.end());
+    ASSERT_TRUE(actCells.find("f6") != actCells.end());
+    ASSERT_TRUE(actCells.find("h6") != actCells.end());
+    ASSERT_TRUE(actCells.find("a7") != actCells.end());
+    ASSERT_TRUE(actCells.find("c7") != actCells.end());
+    ASSERT_TRUE(actCells.find("e7") != actCells.end());
+    ASSERT_TRUE(actCells.find("g7") != actCells.end());
+    ASSERT_TRUE(actCells.find("b8") != actCells.end());
+    ASSERT_TRUE(actCells.find("d8") != actCells.end());
+    ASSERT_TRUE(actCells.find("f8") != actCells.end());
+    ASSERT_TRUE(actCells.find("h8") != actCells.end());
 }

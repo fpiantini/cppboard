@@ -3,7 +3,7 @@
 
 #include <cstdint>   // for uint64_t
 #include <string>
-#include <list>
+#include <set>
 
 // base type for bitboard representation
 
@@ -64,15 +64,15 @@ namespace bitboard
     BitBoard() { reset(); }
     BitBoard(BitBoardState initState) : BitBoard() { bbs = initState; }
     BitBoard(const std::string& pos) : BitBoard() { setPos(pos); }
-    BitBoard(const std::list<std::string>& pos) : BitBoard() { setPos(pos); }
+    BitBoard(const std::set<std::string>& pos) : BitBoard() { setPos(pos); }
 
     void reset() { bbs = 0; }
     void setPos(const std::string &pos);
-    void setPos(const std::list<std::string>& poslist);
+    void setPos(const std::set<std::string>& poslist);
     bool isBusy(const std::string &pos) const { return ((bbs & staticState(pos)) != 0); }
 
     bool cellIsActive(std::string &pos);
-    void activeCells(std::list<std::string> &actCells);
+    void activeCells(std::set<std::string> &actCells);
 
     BitBoardState state() const {return bbs;}
 
