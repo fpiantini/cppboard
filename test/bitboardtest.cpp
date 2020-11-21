@@ -34,13 +34,6 @@ TEST_F(BBTester, B1_Busy)
     ASSERT_EQ(bboard.state(), 2);
 }
 
-TEST_F(BBTester, CheckUppercase)
-{
-    bboard.reset();
-    bboard.setPos("A1");
-    ASSERT_EQ(bboard.state(), 1);
-}
-
 TEST_F(BBTester, DiagonalBottomLeftToUpperRightBusy)
 {
     bboard.reset();
@@ -129,4 +122,32 @@ TEST(BitBoardTester, UsingValueContructorCheckerInitial)
     ASSERT_TRUE(actCells.find("d8") != actCells.end());
     ASSERT_TRUE(actCells.find("f8") != actCells.end());
     ASSERT_TRUE(actCells.find("h8") != actCells.end());
+}
+
+TEST_F(BBTester, CheckUppercase)
+{
+    bboard.reset();
+    bboard.setPos("A1");
+    ASSERT_EQ(bboard.state(), 1);
+}
+
+TEST_F(BBTester, BoardDoNotChangeIfInvalidCoordinates)
+{
+    bboard.reset();
+    bboard.setPos("i1");
+    ASSERT_EQ(bboard.state(), ClearBoard);
+    bboard.setPos("a9");
+    ASSERT_EQ(bboard.state(), ClearBoard);
+    bboard.setPos("aa");
+    ASSERT_EQ(bboard.state(), ClearBoard);
+    bboard.setPos("aa");
+    ASSERT_EQ(bboard.state(), ClearBoard);
+    bboard.setPos("bb");
+    ASSERT_EQ(bboard.state(), ClearBoard);
+    bboard.setPos("a1andotherthings...");
+    ASSERT_EQ(bboard.state(), ClearBoard);
+    bboard.setPos("2d");
+    ASSERT_EQ(bboard.state(), ClearBoard);
+    bboard.setPos("Cf3");
+    ASSERT_EQ(bboard.state(), ClearBoard);
 }

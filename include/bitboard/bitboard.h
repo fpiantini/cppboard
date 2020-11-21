@@ -14,6 +14,7 @@ namespace bitboard
 
   // Typical bitboards configutations
   // Generic
+  const BitBoardState ClearBoard                   = 0;
   const BitBoardState BottomLeftUpperRightDiagonal = 0x8040201008040201;
   const BitBoardState BottomRightUpperLeftDiagonal = 0x0102040810204080;
   const BitBoardState BoardCenter                  = 0x0000001818000000;
@@ -66,7 +67,7 @@ namespace bitboard
     BitBoard(const std::string& pos) : BitBoard() { setPos(pos); }
     BitBoard(const std::set<std::string>& pos) : BitBoard() { setPos(pos); }
 
-    void reset() { bbs = 0; }
+    void reset() { bbs = ClearBoard; }
     void setPos(const std::string &pos);
     void setPos(const std::set<std::string>& poslist);
     bool isBusy(const std::string &pos) const { return ((bbs & staticState(pos)) != 0); }
@@ -77,7 +78,10 @@ namespace bitboard
     BitBoardState state() const {return bbs;}
 
   private:
-    static BitBoardState pos2mask(const std::string &pos) { return 1ULL << posToBitPos(pos); }
+    static bool isValidPos(const std::string &pos);
+    static bool isValidRow(char row);
+    static bool isValidColumn(char col);
+    static BitBoardState pos2mask(const std::string &pos);
     static unsigned int posToBitPos(const std::string &pos);
     static BitBoardState staticState(const std::string &pos) { return BitBoard(pos).state(); };
 

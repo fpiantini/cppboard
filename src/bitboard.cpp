@@ -9,7 +9,9 @@ namespace bitboard
     // Public methods
     void BitBoard::setPos(const std::string &pos)
     {
-        bbs |= pos2mask(pos);
+        // ignores invalid positions...
+        if (isValidPos(pos))
+            bbs |= pos2mask(pos);
     }
 
     void BitBoard::setPos(const std::set<std::string>& poslist)
@@ -40,11 +42,33 @@ namespace bitboard
 
     // ---------------------------------------------------------------------
     // Private methods
+    bool BitBoard::isValidPos(const std::string &pos)
+    {
+        // valid position are two characters strings
+        // with correct row and column values
+        return ((pos.size() == 2) &&
+           isValidColumn(pos.at(0)) &&
+           isValidRow(pos.at(1)));
+    }
+    bool BitBoard::isValidColumn(char col)
+    {
+        return (tolower(col) >= 'a' && tolower(col) <= 'h');
+    }
+    bool BitBoard::isValidRow(char row)
+    {
+        return (row >= '1' && row <= '8');
+    }
+
     unsigned int BitBoard::posToBitPos(const std::string &pos)
     {
         unsigned int row = pos.at(1) - '1';
         unsigned int col = tolower(pos.at(0)) - 'a';
         return row * 8 + col;
+    }
+
+    BitBoardState BitBoard::pos2mask(const std::string &pos)
+    {
+        return 1ULL << posToBitPos(pos);
     }
 
 } // namespace bitboard
