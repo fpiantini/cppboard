@@ -19,6 +19,11 @@ namespace bitboard
   const BitBoardState BoardCenter                  = 0x0000001818000000;
   const BitBoardState Corners                      = 0x8100000000000081;
 
+  // Checkers related
+  const BitBoardState CHK_WhiteInitial             = 0x000000000055AA55;
+  const BitBoardState CHK_BlackInitial             = 0xAA55AA0000000000;
+  const BitBoardState CHK_Initial                  = CHK_WhiteInitial | CHK_BlackInitial;
+
   // Chess related
   const BitBoardState CH_WhiteKingInitial          = 0x0000000000000010;
   const BitBoardState CH_BlackKingInitial          = 0x1000000000000000;
@@ -57,17 +62,23 @@ namespace bitboard
   {
   public:
     BitBoard() { reset(); }
-    BitBoard(const std::string& pos);
-    BitBoard(const std::list<std::string>& pos);
+    BitBoard(BitBoardState initState) : BitBoard() { bbs = initState; }
+    BitBoard(const std::string& pos) : BitBoard() { setPos(pos); }
+    BitBoard(const std::list<std::string>& pos) : BitBoard() { setPos(pos); }
 
     void reset() { bbs = 0; }
-    void setpos(const std::string &pos);
-    void setpos(const std::list<std::string>& poslist);
+    void setPos(const std::string &pos);
+    void setPos(const std::list<std::string>& poslist);
+    bool isBusy(const std::string &pos) const { return (bbs & staticState(pos) != 0); }
+
+    bool cellIsActive(std::string &pos);
+    void activeCells(std::list<std::string> &actCells);
 
     BitBoardState state() const {return bbs;}
 
   private:
-    unsigned int posToBitpos(const std::string &pos) const;
+    unsigned int posToBitPos(const std::string &pos) const;
+    static BitBoardState staticState(const std::string &pos) { return BitBoard(pos).state(); };
 
     // ------------------------------------
     BitBoardState bbs;

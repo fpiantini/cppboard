@@ -3,33 +3,44 @@
 namespace bitboard
 {
     // ---------------------------------------------------------------------
-    // Constructors
-    BitBoard::BitBoard(const std::string& pos) : BitBoard()
-    {
-        setpos(pos);
-    }
-    BitBoard::BitBoard(const std::list<std::string>& pos) : BitBoard()
-    {
-        setpos(pos);
-    }
+    // Constructors (see header)
 
     // ---------------------------------------------------------------------
     // Public methods
-    void BitBoard::setpos(const std::string &pos)
+    void BitBoard::setPos(const std::string &pos)
     {
-        bbs |= 1ULL << posToBitpos(pos);
+        bbs |= 1ULL << posToBitPos(pos);
     }
 
-    void BitBoard::setpos(const std::list<std::string>& poslist)
+    void BitBoard::setPos(const std::list<std::string>& poslist)
     {
         for (auto pos: poslist) {
-            setpos(pos);
+            setPos(pos);
+        }
+    }
+
+    bool BitBoard::cellIsActive(std::string &pos)
+    {
+        return ((bbs & (1ULL << posToBitPos(pos))) != 0);
+    }
+
+    void BitBoard::activeCells(std::list<std::string> &actCells)
+    {
+        std::string pos;
+        for (char row = '1'; row <= '8'; row++) {
+            for(char col = 'a'; col <= 'h'; col++) {
+                pos = col;
+                pos += row;
+                if (cellIsActive(pos)) {
+                    actCells.push_back(pos);
+                }
+            }
         }
     }
 
     // ---------------------------------------------------------------------
     // Private methods
-    unsigned int BitBoard::posToBitpos(const std::string &pos) const
+    unsigned int BitBoard::posToBitPos(const std::string &pos) const
     {
         unsigned int row = pos.at(1) - '1';
         unsigned int col = pos.at(0) - 'a';
