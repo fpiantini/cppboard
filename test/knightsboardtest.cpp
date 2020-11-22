@@ -6,14 +6,23 @@ using namespace std;
 using namespace cppboard;
 using namespace testing;
 
-class KnightsBoardTester : public Test
+// the knight board is initially empty
+TEST(KnightsBoardTester, KnightsBoardIsEmptyAfterCreation)
 {
-public:
     KnightsBoard kb;
-};
-
-// Requirement: the knight board is initially empty
-TEST_F(KnightsBoardTester, KnightsBoardIsEmptyAfterCreation)
-{
     ASSERT_EQ(kb.state(), ClearBoard);
+}
+
+// the knight board for white player is initially correctly
+TEST(KnightsBoardTester, WhiteKnightsInitialization)
+{
+    KnightsBoard kb(KnightsBoard::InitialWhite);
+    ASSERT_EQ(kb.state(), CH_WhiteKnightsInitial);
+}
+
+// the knight board for black player is initially correctly
+TEST(KnightsBoardTester, BlackKnightsInitialization)
+{
+    KnightsBoard kb(KnightsBoard::InitialBlack);
+    ASSERT_EQ(kb.state(), CH_BlackKnightsInitial);
 }
