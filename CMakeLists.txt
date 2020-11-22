@@ -15,6 +15,8 @@ set(cmakeAddonsDir "${CMAKE_CURRENT_SOURCE_DIR}/cmake_addons")
 # ---------------------------------------------------------------
 set(HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/include/${CTGT}/bitboard.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/${CTGT}/bbchessdefs.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/${CTGT}/bbchechersdefs.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/${CTGT}/knightsboard.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/${CTGT}/unichesspset.h
 )

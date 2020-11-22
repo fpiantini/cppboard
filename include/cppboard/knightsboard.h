@@ -2,6 +2,7 @@
 #define CPPBOARD_KNIGHTSBOARD_HEADER
 
 #include "cppboard/bitboard.h"
+#include "cppboard/bbchessdefs.h"
 
 namespace cppboard
 {

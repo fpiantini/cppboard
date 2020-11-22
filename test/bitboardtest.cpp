@@ -4,6 +4,8 @@
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 #include "cppboard/bitboard.h"
+#include "cppboard/bbchessdefs.h"
+#include "cppboard/bbcheckersdefs.h"
 
 using namespace std;
 using namespace cppboard;
