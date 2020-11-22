@@ -80,6 +80,7 @@ namespace cppboard
     void activeCells(std::set<std::string> &actCells);
 
     BitBoardState state() const {return bbs;}
+    static void stateToPosSet(BitBoardState s, std::set<std::string> &posSet);
 
   private:
     static bool isValidPos(const std::string &pos);

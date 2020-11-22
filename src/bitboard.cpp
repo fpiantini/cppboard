@@ -61,6 +61,13 @@ namespace cppboard
     }
 
     // ---------------------------------------------------------------------
+    void BitBoard::stateToPosSet(BitBoardState s, std::set<std::string> &posSet)
+    {
+        BitBoard tmpBB(s);
+        tmpBB.activeCells(posSet);
+    }
+
+    // ---------------------------------------------------------------------
     // Private methods
     bool BitBoard::isValidPos(const std::string &pos)
     {
