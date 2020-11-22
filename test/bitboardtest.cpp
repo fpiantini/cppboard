@@ -196,3 +196,20 @@ TEST_F(BBTester, DontMoveIntoABusyPlace)
     bboard.move("h2", "b8");
     ASSERT_EQ(bboard.state(), bboard.generateStateFromPos(set<string>{"h2", "b8"}));
 }
+
+// Additional requirements: the bitboard class shall have a static method that,
+// given a bitboard state, returns the set of the active positions in that board
+TEST_F(BBTester, ClearBitboardShallReturnAnEmptySetOfPositions)
+{
+    set<string> posSet;
+    bboard.stateToPosSet(ClearBoard, posSet);
+    ASSERT_TRUE(posSet.empty());
+}
+TEST_F(BBTester, BitboardWithKingsInInitialPositionShallReturnE1andE8)
+{
+    set<string> posSet;
+    bboard.stateToPosSet(CH_BothKingsInitial, posSet);
+    ASSERT_EQ(posSet.size(), 2);
+    ASSERT_TRUE(posSet.find("e1") != posSet.end());
+    ASSERT_TRUE(posSet.find("e8") != posSet.end());
+}

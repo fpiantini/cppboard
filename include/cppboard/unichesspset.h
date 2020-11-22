@@ -1,6 +1,9 @@
 #if !defined CPPBOARD_UNICHESSPSET_HEADER
 #define CPPBOARD_UNICHESSPSET_HEADER
 
+#include <string>
+#include <set>
+
 #include "cppboard/bitboard.h"
 
 namespace cppboard
@@ -10,6 +13,8 @@ namespace cppboard
   // Can be a single piece or a set of pieces
   class UniformChessPieceSet
   {
+    public:
+      BitBoardState pieceBoard() const { return ClearBoard; }
   };
 
 } // namespace cppboard
