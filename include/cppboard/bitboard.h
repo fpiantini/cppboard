@@ -85,7 +85,7 @@ namespace cppboard
     static bool isValidPos(const std::string &pos);
     static bool isValidRow(char row);
     static bool isValidColumn(char col);
-    static BitBoardState pos2mask(const std::string &pos);
+    static BitBoardState pos2state(const std::string &pos);
     static unsigned int posToBitPos(const std::string &pos);
 
     // ------------------------------------

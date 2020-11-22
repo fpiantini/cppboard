@@ -17,7 +17,7 @@ namespace cppboard
     void BitBoard::setPos(const std::string &pos)
     {
         if (isValidPos(pos))
-            bbs |= pos2mask(pos);
+            bbs |= pos2state(pos);
     }
 
     void BitBoard::setPos(const std::set<std::string>& poslist)
@@ -30,7 +30,7 @@ namespace cppboard
     void BitBoard::clearPos(const std::string &pos)
     {
         if (isValidPos(pos))
-            bbs &= ~pos2mask(pos);
+            bbs &= ~pos2state(pos);
     }
     void BitBoard::clearPos(const std::set<std::string>& poslist)
     {
@@ -86,7 +86,7 @@ namespace cppboard
         return row * 8 + col;
     }
 
-    BitBoardState BitBoard::pos2mask(const std::string &pos)
+    BitBoardState BitBoard::pos2state(const std::string &pos)
     {
         return 1ULL << posToBitPos(pos);
     }
