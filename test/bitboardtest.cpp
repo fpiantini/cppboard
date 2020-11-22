@@ -215,3 +215,71 @@ TEST_F(BBTester, BitboardWithKingsInInitialPositionShallReturnE1andE8)
     ASSERT_TRUE(posSet.find("e1") != posSet.end());
     ASSERT_TRUE(posSet.find("e8") != posSet.end());
 }
+
+// ------------------------------------------------------------------------------------
+// New set of tests... We need functions that given a board returns a set of
+// two dimensional integer vector with the indexes of the active cells.
+// the format shall be [col, row]
+// For example, for the starting kings positions this function shall return:
+//         { [4,0], [4,7] }
+// From an index in this format, it is possible to compute the related bit
+// position in the BitBoard:
+//    bit = pos[1] * 8 + pos[0]
+// Also a utility function that converts a string position in a coordinate
+// pair is necessary
+TEST_F(BBTester, CheckNumericalIndexesIfOnlyA1Active)
+{
+    set<pair<int, int>>posNdx;
+    bboard.reset();
+    bboard.setPos("a1");
+    bboard.activeCellsNdx(posNdx);
+
+    ASSERT_EQ(posNdx.size(), 1);
+    ASSERT_TRUE(posNdx.find(pair<int,int>{0,0}) != posNdx.end());
+}
+TEST_F(BBTester, CheckNumericalIndexesIfOnlyD2Active)
+{
+    set<pair<int, int>>posNdx;
+    bboard.reset();
+    bboard.setPos("d2");
+    bboard.activeCellsNdx(posNdx);
+
+    ASSERT_EQ(posNdx.size(), 1);
+    ASSERT_TRUE(posNdx.find(pair<int,int>{1,3}) != posNdx.end());
+}
+
+TEST_F(BBTester, CheckNumericalIndexesIfA1B3C2D4E5F7G6H8Active)
+{
+    set<pair<int, int>>posNdx;
+    bboard.reset();
+    bboard.setPos(set<string>{
+        "a1", "b3", "c2", "d4", "e5", "f7", "g6", "h8"});
+    bboard.activeCellsNdx(posNdx);
+
+    ASSERT_EQ(posNdx.size(), 8);
+    ASSERT_TRUE(posNdx.find(pair<int,int>{0,0}) != posNdx.end());
+    ASSERT_TRUE(posNdx.find(pair<int,int>{2,1}) != posNdx.end());
+    ASSERT_TRUE(posNdx.find(pair<int,int>{1,2}) != posNdx.end());
+    ASSERT_TRUE(posNdx.find(pair<int,int>{3,3}) != posNdx.end());
+    ASSERT_TRUE(posNdx.find(pair<int,int>{4,4}) != posNdx.end());
+    ASSERT_TRUE(posNdx.find(pair<int,int>{6,5}) != posNdx.end());
+    ASSERT_TRUE(posNdx.find(pair<int,int>{5,6}) != posNdx.end());
+    ASSERT_TRUE(posNdx.find(pair<int,int>{7,7}) != posNdx.end());
+}
+
+TEST_F(BBTester, CheckConversionToIndexForPositionA1)
+{
+    pair<int,int> coord = bboard.posToCoordinates("a1");
+    ASSERT_EQ(coord.first, 0);
+    ASSERT_EQ(coord.second, 0);
+}
+
+TEST_F(BBTester, CheckConversionToIndexForInvalidPositions)
+{
+    pair<int,int> coord = bboard.posToCoordinates("a9");
+    ASSERT_EQ(coord.first, INVALID_COORD);
+    ASSERT_EQ(coord.second, INVALID_COORD);
+    coord = bboard.posToCoordinates("i1");
+    ASSERT_EQ(coord.first, INVALID_COORD);
+    ASSERT_EQ(coord.second, INVALID_COORD);
+}

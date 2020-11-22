@@ -18,6 +18,8 @@ namespace cppboard
   const BitBoardState BoardCenter                  = 0x0000001818000000;
   const BitBoardState Corners                      = 0x8100000000000081;
 
+  const int INVALID_COORD = -1;
+
   // base class for bitboard representation
   class BitBoard
   {
@@ -38,10 +40,13 @@ namespace cppboard
 
     bool cellActive(const std::string &pos) const { return ((bbs & generateStateFromPos(pos)) != 0); }
 
-    void activeCells(std::set<std::string> &actCells);
+    void activeCells(std::set<std::string> &actCells) const;
+    void activeCellsNdx(std::set<std::pair<int, int>> &actCellsNdx) const;
 
     BitBoardState state() const {return bbs;}
     static void stateToPosSet(BitBoardState s, std::set<std::string> &posSet);
+
+    static std::pair<int,int> posToCoordinates(const std::string &pos);
 
   private:
     static bool isValidPos(const std::string &pos);
@@ -49,6 +54,8 @@ namespace cppboard
     static bool isValidColumn(char col);
     static BitBoardState pos2state(const std::string &pos);
     static unsigned int posToBitPos(const std::string &pos);
+
+    bool cellActiveByNdx(int row, int col) const;
 
     // ------------------------------------
     BitBoardState bbs;

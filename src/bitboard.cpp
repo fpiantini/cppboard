@@ -46,7 +46,7 @@ namespace cppboard
         }
     }
 
-    void BitBoard::activeCells(std::set<std::string> &actCells)
+    void BitBoard::activeCells(std::set<std::string> &actCells) const
     {
         std::string pos;
         for (char row = '1'; row <= '8'; row++) {
@@ -60,11 +60,36 @@ namespace cppboard
         }
     }
 
+    void BitBoard::activeCellsNdx(std::set<std::pair<int, int>> &actCellsNdx) const
+    {
+        std::pair<int,int> p;
+        for (int row = 0; row < 8; row++) {
+            for(int col = 0; col < 8; col++) {
+                if (cellActiveByNdx(row, col)) {
+                    p.first = row;
+                    p.second = col;
+                    actCellsNdx.insert(p);
+                }
+            }
+        }
+
+    }
+
     // ---------------------------------------------------------------------
     void BitBoard::stateToPosSet(BitBoardState s, std::set<std::string> &posSet)
     {
         BitBoard tmpBB(s);
         tmpBB.activeCells(posSet);
+    }
+
+    std::pair<int,int> BitBoard::posToCoordinates(const std::string &pos)
+    {
+        std::pair<int, int> coords = {INVALID_COORD , INVALID_COORD};
+        if (isValidPos(pos)) {
+            coords.first = pos.at(0) - 'a';
+            coords.second = pos.at(1) - '1';
+        }
+        return coords;
     }
 
     // ---------------------------------------------------------------------
@@ -96,6 +121,11 @@ namespace cppboard
     BitBoardState BitBoard::pos2state(const std::string &pos)
     {
         return 1ULL << posToBitPos(pos);
+    }
+
+    bool BitBoard::cellActiveByNdx(int row, int col) const
+    {
+        return ((bbs & (1ULL << (row * 8 + col))) != 0);
     }
 
 } // namespace cppboard
