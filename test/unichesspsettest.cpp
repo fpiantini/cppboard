@@ -17,7 +17,7 @@ public:
 
 // Requirement: the UCPS class contains a set of pieces,
 // and this set is empty after the creation of a UCPS
-TEST_F(UCPSTester, PieceSetBitBoardIsEmptyAfterCreation)
+TEST_F(UCPSTester, DISABLED_PieceSetBitBoardIsEmptyAfterCreation)
 {
     BitBoardState bbs;
     bbs = pset.pieceBoard(); 

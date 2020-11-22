@@ -10,6 +10,7 @@ set(TESTCTGT testcppboard)
 
 add_executable(${TESTCTGT}
     bitboardtest.cpp
+    knightsboardtest.cpp
     unichesspsettest.cpp
 )
 
