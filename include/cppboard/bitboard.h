@@ -48,6 +48,8 @@ namespace cppboard
 
     static std::pair<int,int> posToCoordinates(const std::string &pos);
 
+    static bool isValidCoords(int row, int col) { return (row >= 0 && row < 8 && col >= 0 && col < 8); }
+
   private:
     static bool isValidPos(const std::string &pos);
     static bool isValidRow(char row);

@@ -125,7 +125,9 @@ namespace cppboard
 
     bool BitBoard::cellActiveByNdx(int row, int col) const
     {
-        return ((bbs & (1ULL << (row * 8 + col))) != 0);
+        if (isValidCoords(row, col))
+            return ((bbs & (1ULL << (row * 8 + col))) != 0);
+        return false;
     }
 
 } // namespace cppboard
