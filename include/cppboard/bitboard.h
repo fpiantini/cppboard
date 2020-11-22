@@ -96,4 +96,4 @@ namespace cppboard
 
 } // namespace cppboard
 
-#endif // #if !defined BITBOARD_HEADER
+#endif // #if !defined CPPBOARD_BITBOARD_HEADER

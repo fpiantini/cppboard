@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.8)
 
 # ***************************************************************
-set(CTGT bitboard)
+set(CTGT cppboard)
 project(${CTGT} VERSION 1.0.0)
 # ***************************************************************
 
@@ -15,6 +15,7 @@ set(cmakeAddonsDir "${CMAKE_CURRENT_SOURCE_DIR}/cmake_addons")
 # ---------------------------------------------------------------
 set(HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/include/${CTGT}/bitboard.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/${CTGT}/unichesspset.h
 )
 
 # ---------------------------------------------------------------
@@ -24,6 +25,7 @@ add_library(${CTGT} SHARED)
 
 target_sources(${CTGT} PRIVATE
     src/bitboard.cpp
+    src/unichesspset.cpp
 )
 
 # ------------------------------------------------------------------

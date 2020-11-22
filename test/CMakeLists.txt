@@ -6,10 +6,11 @@ include(${cmakeAddonsDir}/addgtestsupport.cmake)
 # Now simply link your own targets against gtest, gmock,
 # etc. as appropriate
 
-set(TESTCTGT testbitboard)
+set(TESTCTGT testcppboard)
 
 add_executable(${TESTCTGT}
     bitboardtest.cpp
+    unichesspsettest.cpp
 )
 
 # includes the base project includes
