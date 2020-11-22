@@ -17,6 +17,10 @@ namespace cppboard
       KnightsBoard() : BitBoard() {};
       KnightsBoard(BitBoardState initState) : BitBoard(initState) {};
 
+      void validMoves(std::set<std::string> &posSet) const;
+
+    private:
+      static void addValidMovesForPos(const std::string &c, std::set<std::string> &actCells);
   };
 
 } // namespace cppboard
