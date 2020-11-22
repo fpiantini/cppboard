@@ -1,13 +1,11 @@
-#if !defined BITBOARD_HEADER
-#define BITBOARD_HEADER
+#if !defined CPPBOARD_BITBOARD_HEADER
+#define CPPBOARD_BITBOARD_HEADER
 
 #include <cstdint>   // for uint64_t
 #include <string>
 #include <set>
 
-// base type for bitboard representation
-
-namespace bitboard
+namespace cppboard
 {
 
   typedef uint64_t BitBoardState;
@@ -59,6 +57,7 @@ namespace bitboard
   const BitBoardState CH_FullInitial               = CH_WhiteFullInitial | CH_BlackFullInitial;
 
 
+  // base class for bitboard representation
   class BitBoard
   {
   public:
@@ -95,6 +94,6 @@ namespace bitboard
 
   };
 
-} // namespace bitboard
+} // namespace cppboard
 
 #endif // #if !defined BITBOARD_HEADER

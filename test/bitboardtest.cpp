@@ -3,10 +3,10 @@
 
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
-#include "bitboard/bitboard.h"
+#include "cppboard/bitboard.h"
 
 using namespace std;
-using namespace bitboard;
+using namespace cppboard;
 using namespace testing;
 
 class BBTester : public Test

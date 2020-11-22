@@ -1,6 +1,6 @@
-#include "bitboard/bitboard.h"
+#include "cppboard/bitboard.h"
 
-namespace bitboard
+namespace cppboard
 {
     // ---------------------------------------------------------------------
     // Constructors (see header)
@@ -91,4 +91,4 @@ namespace bitboard
         return 1ULL << posToBitPos(pos);
     }
 
-} // namespace bitboard
+} // namespace cppboard
